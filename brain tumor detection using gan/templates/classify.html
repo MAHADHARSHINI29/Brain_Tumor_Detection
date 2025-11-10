@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brain Tumor Detection Result</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <style>
+    body {
+      background: white url("/static/images/bg.jpg") center / cover;
+      color: black;
+      font-family: 'Times New Roman';
+    }
+    .result-box {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      color: black;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #2b2b2b;
+    }
+    p, p strong {
+      color: black !important;
+    }
+    p {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<section class="section">
+  <div class="container has-text-centered result-box">
+    <h1 class="title is-2" style="color: black; font-weight: bold;">🧠 Brain Tumor Detection Result</h1>
+
+    <img src="{{ url_for('send_file', filename=image_file_name) }}" alt="Uploaded Image" />
+
+    <h2 class="section-title">Detected: {{ label }}</h2>
+    <h3>Confidence: {{ prob }}</h3>
+
+    {% if "meningioma" in label.lower() %}
+      <p><strong>About:</strong> Meningiomas arise from the membranes surrounding the brain and spinal cord.</p>
+      <p><strong>Causes:</strong> Radiation exposure, genetics, female hormones.</p>
+      <p><strong>Symptoms:</strong> Headaches, seizures, vision problems.</p>
+      <p><strong>Treatment:</strong> Surgery, radiation therapy, sometimes observation.</p>
+
+    {% elif "glioma" in label.lower() %}
+      <p><strong>About:</strong> Gliomas are tumors from glial cells in the brain or spine.</p>
+      <p><strong>Causes:</strong> Genetic mutations, environmental exposure, age.</p>
+      <p><strong>Symptoms:</strong> Memory loss, seizures, difficulty speaking.</p>
+      <p><strong>Treatment:</strong> Surgery, chemo, radiation.</p>
+
+    {% elif "pituitary" in label.lower() %}
+      <p><strong>About:</strong> Tumors in the pituitary gland, often non-cancerous.</p>
+      <p><strong>Causes:</strong> Hereditary conditions, hormonal imbalance.</p>
+      <p><strong>Symptoms:</strong> Vision changes, hormone problems, headaches.</p>
+      <p><strong>Treatment:</strong> Surgery, hormone therapy, radiation.</p>
+
+    {% elif "no" in label.lower() or "notumor" in label.lower() %}
+      <p><strong>Great news!</strong> No tumor was detected in the image.</p>
+      <p>Keep monitoring and maintain regular checkups if any symptoms arise.</p>
+
+    {% else %}
+      <p><strong>Unknown label.</strong> Please try again with a different image or check the image quality.</p>
+    {% endif %}
+
+    <br>
+    <a href="/" class="button is-warning is-outlined">⬅ Back to Home</a>
+  </div>
+</section>
+</body>
+</html>

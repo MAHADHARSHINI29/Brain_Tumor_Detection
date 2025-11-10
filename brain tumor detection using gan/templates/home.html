@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brain Tumor Detection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <style>
+    body, html {
+      background: white;
+      color: black;
+    }
+    .hero {
+      background: white url('/static/images/bg.jpg') center/cover no-repeat;
+    }
+    .file-name {
+      color: black;
+    }
+    #preview {
+      margin-top: 20px;
+      max-width: 300px;
+      border: 3px solid black;
+      border-radius: 10px;
+    }
+    .button.is-primary {
+      background-color: #ff3860;
+      border: none;
+      color: white;
+    }
+    footer {
+      padding: 2rem 1rem;
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: center;
+    }
+    .info-box {
+      background-color: rgba(0, 0, 0, 0.03);
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      color: black;
+      box-shadow: 0 0 10px #ff3860;
+    }
+    .info-box h2 {
+      color: #ff3860;
+      font-weight: bold;
+    }
+    .info-box ul {
+      margin-left: 1rem;
+      list-style-type: square;
+    }
+    .info-box strong {
+      color: #e63946;
+    }
+    .info-box p {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+
+        <h1 class="title is-size-2">
+          Brain Tumor Detection
+        </h1>
+
+        <div class="info-box">
+          <h2 class="title is-size-4">🧠 About Brain Tumors</h2>
+          <p>
+            A <strong>brain tumor</strong> is a collection of abnormal cells in the brain. It can be <strong>benign</strong> (non-cancerous) or <strong>malignant</strong> (cancerous).
+          </p>
+          <p>
+            This project uses <strong>deep learning</strong> to analyze MRI images and predict whether a tumor is present and what type it is.
+          </p>
+          <p>
+            Detected Tumor Types:
+            <ul>
+              <li><strong>Glioma Tumor</strong></li>
+              <li><strong>Meningioma Tumor</strong></li>
+              <li><strong>Pituitary Tumor</strong></li>
+              <li><strong>No Tumor (Normal)</strong></li>
+            </ul>
+          </p>
+          <p><strong>Why it matters:</strong> Early diagnosis can save lives.</p>
+        </div>
+
+        <!-- Upload Form -->
+        <form action="/classify" method="post" enctype="multipart/form-data" style="margin-top: 2rem;">
+          <div class="file has-name is-centered is-boxed">
+            <label class="file-label">
+              <input class="file-input" type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+              <span class="file-cta">
+                <span class="file-icon"><i class="fas fa-upload"></i></span>
+                <span class="file-label">Choose an Image</span>
+              </span>
+              <span class="file-name" id="file-name">No file selected</span>
+            </label>
+          </div>
+
+          <div>
+            <img id="preview" src="#" alt="" style="display:none;" />
+          </div>
+
+          <div style="margin-top: 20px;">
+            <input type="submit" value="Detect Tumor" class="button is-primary is-medium">
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Brain Tumor Detection Project</strong></p>
+    <p>Made with ❤️ using TensorFlow + Flask</p>
+  </footer>
+
+  <script>
+    function previewImage(event) {
+      const input = event.target;
+      const reader = new FileReader();
+      reader.onload = function () {
+        const preview = document.getElementById('preview');
+        preview.src = reader.result;
+        preview.style.display = 'block';
+      }
+      if (input.files[0]) {
+        reader.readAsDataURL(input.files[0]);
+        document.getElementById('file-name').innerText = input.files[0].name;
+      }
+    }
+  </script>
+</body>
+</html>
