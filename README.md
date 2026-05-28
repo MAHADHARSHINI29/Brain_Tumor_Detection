@@ -72,7 +72,7 @@ Jupyter Notebook
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/brain-tumor-detection.git
+git clone https://github.com/MAHADHARSHINI29/brain-tumor-detection.git
 cd brain-tumor-detection
 ```
 
