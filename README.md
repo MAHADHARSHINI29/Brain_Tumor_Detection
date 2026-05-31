@@ -72,7 +72,7 @@ Jupyter Notebook
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/brain-tumor-detection.git
+git clone https://github.com/MAHADHARSHINI29/brain-tumor-detection.git
 cd brain-tumor-detection
 ```
 
@@ -162,20 +162,20 @@ The project includes an experimental Generative Adversarial Network (GAN) for:
 - Synthetic medical image generation
 - Enhanced pattern recognition
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This project is for educational and research purposes only. It should not be used as a substitute for professional medical diagnosis. Always consult qualified healthcare professionals for medical advice.
 
-## 📝 License
+## License
 
 This project is open source and available under the MIT License.
 
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Dataset providers
 - TensorFlow and Keras communities
